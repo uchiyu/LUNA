@@ -1,34 +1,16 @@
-require 'win32ole'
+#config: utf-8
 
-if ARGV.size < 1
-  puts "ファイル名を引数に指定"
-  gets
-  exit
-end
+require "rexml/document"
 
-# PowerPoint起動
-ppt = WIN32OLE.new('PowerPoint.Application')
-ppt.visible = true
+%x( unzip resume/semi2013/s13t208/201410/s13t208-201410.pptx ppt/slides/slide1.xml )
 
-if ppt.Presentations.Count > 0
-  puts "開いてるPowerPointファイルを閉じてから実行してください。"
-  gets
-  exit
-end
+doc = REXML::Document.new(File.new("ppt/slides/slide1.xml"))
 
-slideIndex = ""
-
-# 各ファイルの処理
-ARGV.each {|filename|
-  presentation = ppt.Presentations.Open(filename, true)
-
-  # 各スライドの処理
-  presentation.Slides.each {|slide|
-    # タイトルページ以外では1段字下げ
-    slideIndex += "\t" if slide.Layout != 1  # 1: PowerPoint.PpSlideLayout.ppLayoutTitle
-    # スライドのタイトル
-    slideIndex += slide.Shapes.Title.TextFrame.TextRange.Text + "\n"
-  }
-  presentation.Close()
+arr = doc.to_s.scan(/<a:t>(.*?)<\/a:t>/)
+text = ""
+arr.each{|str_elem|
+  text << str_elem.to_s
 }
-ppt.Quit()
+p text.delete("\"").delete("[").delete("]")
+
+%x(rm -rf _rels ppt)
