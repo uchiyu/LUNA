@@ -28,22 +28,38 @@ def trim_text( text, file )
 
   write[0] = file
 
+  # 学籍番号
+  tmp = file.match(/\d{2}[T|G|t|g]\d{3}/).to_s.strip
+  if tmp != ''
+    write[1] = tmp
+  end
+
+  # ナンバリング
+  tmp = file.match(/\d{6}/).to_s.strip
+  if tmp != '' || tmp != ' '
+    write[2] = tmp
+  end
+
   arr.each do |text_block|
     # 情報のマッチング
     # 学籍番号
-    tmp = text_block.match(/\d{2}[T|G|t|g]\d{3}/).to_s.strip
-    if tmp != ''
-      write[1] = tmp
+    if write[1] == ''
+      tmp = text_block.match(/\d{2}[T|G|t|g]\d{3}/).to_s.strip
+      if ( tmp != '' )
+        write[1] = tmp
+      end
     end
-    
+
     # ナンバリング
-    tmp = text_block.match(/\d{4}年\d{2}月版/).to_s.strip
-    if tmp != ''
-      write[2] = tmp
+    if write[2] == ''
+      tmp = text_block.match(/\d{4}年\d{2}月版/).to_s.delete('年').delete('月版').strip
+      if ( tmp != '' )
+        write[2] = tmp
+      end
     end
 
     # タイトル
-    tmp = text_block.match(/^(?!.*(月例発表([ ]|)\d{4}年\d{2}月版|\d{2}[T|G|t|g]\d{3}|富永研究室)).+$/).to_s.strip
+    tmp = text_block.match(/^(?!.*(月例発表|\d{4}年\d{2}月版|香川大学([ ]|)工学部|stmail)).+{8,}$/).to_s.strip
     if tmp != ''
       write[3] = tmp
     end
@@ -61,7 +77,7 @@ def find_file( directories, files )
       file = path.to_s.slice!(/[^\/]*$/) # ファイル名の抽出
       directly = path.delete(path.to_s.slice!(/[^\/]*$/)) # ディレクトリ名の抽出
       
-      if file.match(/^[~$].*$/)
+      if file.match(/^[~$|_].*$/)
         next
       end
      
