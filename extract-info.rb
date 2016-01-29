@@ -30,16 +30,19 @@ def trim_text( text, file )
 
   arr.each do |text_block|
     # 情報のマッチング
+    # 学籍番号
     tmp = text_block.match(/\d{2}[T|G|t|g]\d{3}/).to_s.strip
     if tmp != ''
       write[1] = tmp
     end
-
+    
+    # ナンバリング
     tmp = text_block.match(/\d{4}年\d{2}月版/).to_s.strip
     if tmp != ''
       write[2] = tmp
     end
 
+    # タイトル
     tmp = text_block.match(/^(?!.*(月例発表([ ]|)\d{4}年\d{2}月版|\d{2}[T|G|t|g]\d{3}|富永研究室)).+$/).to_s.strip
     if tmp != ''
       write[3] = tmp
