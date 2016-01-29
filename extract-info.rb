@@ -54,11 +54,10 @@ end
 
 def find_file( directories, files )
   Dir.glob('./**/*').each do |path|
-    # /年月/*.pptx の場合のみ
-    if /^(?!(.*)\/s\d{2}[T|G|t|g]\d{3}\/\d{6}\/(.*)\/(.*)).*.pptx/ =~ path
-      file = path.to_s.slice!(/[^\/]*$/)
-      directly = path.delete(path.to_s.slice!(/[^\/]*$/))
-      if file.match(/s\d{2}[T|G|t|g]\d{3}/).to_s == directly.match(/s\d{2}[T|G|t|g]\d{3}/).to_s
+    if /^(?!(.*)\/s\d{2}[T|G|t|g]\d{3}\/\d{6}\/(.*)\/(.*)).*.pptx/ =~ path # /年月/*.pptx の場合のみ
+      file = path.to_s.slice!(/[^\/]*$/) # ファイル名の抽出
+      directly = path.delete(path.to_s.slice!(/[^\/]*$/)) # ディレクトリ名の抽出
+      if file.match(/s\d{2}[T|G|t|g]\d{3}/).to_s == directly.match(/s\d{2}[T|G|t|g]\d{3}/).to_s #学番が一致するなら
         directories.push( directly )
         files.push( file )
       end
