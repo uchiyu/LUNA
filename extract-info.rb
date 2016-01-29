@@ -2,7 +2,7 @@
 
 require "rexml/document"
 
-def extract( directory, file )
+def extract_info( directory, file )
 
   %x( unzip #{directory}#{file} ppt/slides/slide1.xml )
 
@@ -20,7 +20,7 @@ def extract( directory, file )
   return text.delete("\"").delete("[").delete("]")
 end
 
-def trim( text )
+def trim_text( text )
   arr = text.to_s.split(",")
   arr.each{|text_block|
     # 情報のマッチング
@@ -31,7 +31,17 @@ def trim( text )
   }
 end
 
-string = extract("resume/semi2013/s13t210/201503/", "s13t210-201503.pptx")
-puts string
-puts
-trim( string )
+def find_file()
+  Dir.glob('./**/*').each do |file|
+
+    if /^(?!(.*)\/s\d{2}[T|G|t|g]\d{3}\/\d{6}\/(.*)\/(.*)).*.pptx/ =~ file
+      puts file
+    end
+  end
+end
+
+find_file()
+#string = extract("resume/semi2013/s13t210/201503/", "s13t210-201503.pptx")
+#puts string
+#puts
+#trim( string )
