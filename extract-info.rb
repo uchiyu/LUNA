@@ -52,31 +52,24 @@ def trim_text( text, file )
   end
 end
 
-def find_file()
-  paths = Array.new
+def find_file( directories, files )
   Dir.glob('./**/*').each do |path|
-
     # /年月/*.pptx の場合のみ
     if /^(?!(.*)\/s\d{2}[T|G|t|g]\d{3}\/\d{6}\/(.*)\/(.*)).*.pptx/ =~ path
-      paths.push(path)
+      file = path.to_s.slice!(/[^\/]*$/)
+      directly = path.delete(path.to_s.slice!(/[^\/]*$/))
+      if file.match(/s\d{2}[T|G|t|g]\d{3}/).to_s == directly.match(/s\d{2}[T|G|t|g]\d{3}/).to_s
+        directories.push( directly )
+        files.push( file )
+      end
     end
   end
-  return paths
 end
 
-def divide_filename( paths, files, directories )
-  paths.each do |path|
-    #puts path
-    files.push(path.to_s.slice!(/[^\/]*$/))
-    directories.push(path.delete(path.to_s.slice!(/[^\/]*$/)))
-  end
+directories = Array.new
+files = Array.new
+find_file( directories, files )
+files.zip(directories).each do |file, directory| # zip で配列の合成
+  string = extract_info(directory, file)
+  trim_text( string, file )
 end
-
-paths = find_file()
-#files = Array.new
-#directories = Array.new
-#divide_filename(paths, files, directories)
-#files.zip(directories).each do |file, directory| # zip で配列の合成
-#  string = extract_info(directory, file)
-#  trim_text( string, file )
-#end
