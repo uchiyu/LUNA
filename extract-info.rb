@@ -3,11 +3,13 @@
 require "rexml/document"
 require "csv"
 
-# pptxファイルを解凍して、一枚目のスライドからデータを抽出
+# pptxファイルを解凍して、一枚目のスライドの内容を抽出
 def extract_info( directory, file )
 
+  # スライドの1枚目を解凍
   %x( unzip #{directory}#{file} ppt/slides/slide1.xml )
 
+  # xmlからスライド内容を抽出
   text = ''
   doc = REXML::Document.new(File.new('ppt/slides/slide1.xml'))
   doc = doc.to_s.scan(/<p:txBody>(.*?)<\/p:txBody>/)
@@ -18,14 +20,17 @@ def extract_info( directory, file )
     end
     text << ','
   end
+
+  # スライド解凍時に生成されたものを削除
   %x(rm -rf _rels ppt)
+
   return text.delete('\"').delete('[').delete(']')
 end
 
-# テキストの整形
+# 登録情報の抽出
 def trim_text( text, file )
 
-  write = Array.new(4) # ファイル名, 学籍番号, ナンバリング, タイトル
+  write = Array.new(4) # ファイル名, 学籍番号, ナンバリング, タイトルを格納
   arr = text.to_s.split(',') # テキストの結合
 
   write[0] = file
@@ -37,7 +42,7 @@ def trim_text( text, file )
     write[1] = tmp
   end
 
-  # ナンバリング
+  # ナンバリング(何月版かを6桁の数字で)
   tmp = file.match(/\d{6}/).to_s.strip
   if tmp != '' || tmp != ' '
     write[2] = tmp
@@ -67,15 +72,19 @@ def trim_text( text, file )
     if tmp != ''
       write[3] = tmp
     end
-  end 
-  
+  end
+
+  # データの書き込み
   path = 'sample.csv'
   CSV.open(path, "a") do |csv|
     csv << write
   end
 end
 
+# チェックを行うpptxフィアルの探索
+# filesには各ファイル名、directoriesには各ディレクトリ名を格納
 def find_file( directories, files )
+  # 再帰的にディレクトリを調査
   Dir.glob('./**/*').each do |path|
     if /^(?!(.*)\/s\d{2}[T|G|t|g]\d{3}\/\d{6}\/(.*)\/(.*)).*.pptx/ =~ path # /年月/*.pptx の場合のみ
       file = path.to_s.slice!(/[^\/]*$/) # ファイル名の抽出
@@ -84,8 +93,9 @@ def find_file( directories, files )
       if file.match(/^[~$|_].*$/)
         next
       end
-     
-      if file.match(/s\d{2}[T|G|t|g]\d{3}/).to_s == directly.match(/s\d{2}[T|G|t|g]\d{3}/).to_s #学番が一致するなら
+
+      #ファイル名とディレクトリ名の学籍番号が一致するならデータを格納
+      if file.match(/s\d{2}[T|G|t|g]\d{3}/).to_s == directly.match(/s\d{2}[T|G|t|g]\d{3}/).to_s
         directories.push( directly )
         files.push( file )
       end
