@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.student_id = params[:user][:student_id]
     @user.name = params[:user][:name]
-    @user.password_digest = params[:user][:password]
+    @user.password = params[:user][:password]
     @user.save
     redirect_to '/users/index'
   end
