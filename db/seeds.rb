@@ -9,5 +9,5 @@
 @user = User.new
 @user.student_id = 's13t208'
 @user.name = 'Y.A'
-@user.password_digest = "72"
+@user.password = "72"
 @user.save
