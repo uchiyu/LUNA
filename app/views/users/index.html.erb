@@ -3,15 +3,15 @@
 
 <table border="1">
   <tr>
-    <th>No.</th>
-    <th>学籍番号</th>
-    <th>名前</th>
+      <th>No.</th>
+      <th>学籍番号</th>
+      <th>名前</th>
   </tr>
   <% @users.each.with_index(1) do |user, i| %>
   <tr>
-    <td><%= "#{i}" %></td>
-    <td><%= user.student_id %></td>
-    <td><%= user.name %></td>
+      <td><%= "#{i}" %></td>
+      <td><%= user.student_id %></td>
+      <td><%= user.name %></td>
   </tr>
   <% end %>
 </table>

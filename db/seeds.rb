@@ -7,7 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 @user = User.new
-@user.student_id = 's13t208'
+@user.student_id = 's13t200'
 @user.name = 'Y.A'
 @user.password = "72"
 @user.save
+
+@student = Student.new
+@student.student_id = 's13t200'
+@student.name = 'uchiyu'
+@student.save
