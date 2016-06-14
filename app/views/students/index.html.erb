@@ -12,23 +12,19 @@ function deleteRow(obj) {
 
 <table border="1">
     <tr>
-        <th>No.</th>
         <th>学籍番号</th>
         <th>名前</th>
     </tr>
-    <% @students.each.with_index(1) do |student, i| %>
+    <% @students.each do |student| %>
         <tr>
-        <td><%= "#{i}" %></td>
-        <form>
-        <td><%= student.student_id %></td>
-        <td><%= student.name %></td>
-        <td><input type="button" value="delete" class="delete_button" /></td>
-        </form>
-    </tr>
+            <td><%= student.student_id %></td>
+            <td><%= student.name %></td>
+            <td><%= link_to "削除", student_path(id: student.id), :method => :delete %></td>
+        </tr>
     <% end %>
 </table>
 
-<%= form_tag( :action => 'index', :remote => true, :class => 'add_form') do -%>
+<%= form_tag( :action => 'create', :remote => true, :class => 'add_form') do -%>
 <p>学籍番号<%= text_field_tag :student_id -%> </p>
 <p>名前<%= text_field_tag :name -%> </p>
 <%= submit_tag('add student') -%>

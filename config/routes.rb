@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   #post "users" => "users#create"
 
-  get 'students/index' => 'students#index'
+  resources :students
+  
+  #get 'students/index' => 'students#index'
 
-  post "students/index" => "students#index"
+  #post "students/index" => "students#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
