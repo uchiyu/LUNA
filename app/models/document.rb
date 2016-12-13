@@ -4,7 +4,6 @@ class Document < ActiveRecord::Base
   def self.create_from_hash(hash)
     document = Document.find_by(title: hash['title'])
     if document
-      document = document.first
       # 保存されたtimestampより日付が最新なら
       if document.file_timestamp < Date.parse(hash['timestamp'])
         # 更新

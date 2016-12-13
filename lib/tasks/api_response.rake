@@ -7,14 +7,14 @@ namespace :api do
   task granada: :environment do
     request_url = 'http://133.92.165.48:4567/documents'
 
-    #document = Document.order(file_timestamp: :desc)[0]
-    #parameter = '?from='
-    #if document != nil
-    #  parameter = parameter + document.file_timestamp.to_s
-    #else
-    #  parameter = parameter + (Date.today() - 7).to_s
-    #end
-    #request_url = request_url + parameter
+    document = Document.order(file_timestamp: :desc)[0]
+    parameter = '?from='
+    if document != nil
+      parameter = parameter + document.file_timestamp.to_s
+      request_url = request_url + parameter
+    end
+
+    p request_url
 
     uri = URI.parse(request_url)
     json = Net::HTTP.get(uri)
