@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20161118164400) do
     t.string   "file_name"
     t.integer  "doc_num"
     t.string   "title"
-    t.string   "stundent_num"
+    t.string   "student_num"
     t.string   "category"
     t.date     "file_timestamp"
     t.datetime "created_at",     null: false
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20161118164400) do
     t.string   "student_number"
     t.string   "name"
     t.string   "password"
-    t.boolean  "is_admin"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "is_admin",       default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end

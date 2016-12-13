@@ -3,8 +3,8 @@ class CreateDocuments < ActiveRecord::Migration
     create_table :documents do |t|
       t.string :file_name
       t.integer :doc_num
-      t.string :title
-      t.string :stundent_num
+      t.string :title, unique: true
+      t.string :student_num
       t.string :category
       t.date :file_timestamp
 
