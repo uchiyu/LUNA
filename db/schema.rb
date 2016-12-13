@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20161118164400) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "file_name"
-    t.integer  "number"
+    t.integer  "doc_num"
     t.string   "title"
+    t.string   "stundent_num"
     t.string   "category"
-    t.date     "date"
-    t.integer  "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date     "file_timestamp"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "students", force: :cascade do |t|
