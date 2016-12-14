@@ -109,6 +109,12 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
     rdoc (4.3.0)
+    react_webpack_rails (0.6.0)
+      rails (>= 3.2)
+    rwr-view_helpers (0.1.1)
+      rails
+      react_webpack_rails (>= 0.6.0)
+      sprockets (>= 3.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -149,6 +155,8 @@ DEPENDENCIES
   jquery-rails
   pry-rails
   rails (= 4.2.4)
+  react_webpack_rails
+  rwr-view_helpers (~> 0.1.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sqlite3

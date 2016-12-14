@@ -32,9 +32,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'react_webpack_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
 end
 
+gem 'rwr-view_helpers', '~> 0.1.1'
