@@ -7,7 +7,7 @@ class StudentTable extends React.Component {
 
   render() {
     var student = this.props.studentData.map(function(e){
-      return (<tr key={e.student_number}><td>{e.student_number}</td><td>{e.name}</td></tr>);
+      return (<tr key={e.student_number}><td>{e.student_num}</td><td>{e.name}</td></tr>);
     });
 
     return(

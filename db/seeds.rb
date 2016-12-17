@@ -7,13 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Student.create(
-  student_number: "s13t208",
+  num: "s13t208",
   name: "内山豊",
   is_admin: true
 )
 
 Student.create(
-  student_number: "s13t203",
+  num: "s13t203",
   name: "阿部隆幸",
   is_admin: true
 )

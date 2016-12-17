@@ -8,6 +8,8 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :category
       t.date :file_timestamp
 
+      t.integer :student_id
+
       t.timestamps null: false
     end
   end

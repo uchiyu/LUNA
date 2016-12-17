@@ -4,7 +4,7 @@ class DocumentContainer extends React.Component {
   render() {
     return(
       <div>
-        <DocumentsTable />
+        <DocumentsTable documentDate = {this.props.documentDate} />
         <KeywordFrom />
       </div>
     );

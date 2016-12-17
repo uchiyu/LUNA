@@ -28,4 +28,11 @@ class Document < ActiveRecord::Base
       )
     end
   end
+
+  def self.set_student_id
+    Document.where(student_id: nil).each do |document|
+      student = Student.where(num: document.student_num).first
+      document.update(student_id: student.id) unless student == nil
+    end
+  end
 end

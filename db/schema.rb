@@ -20,17 +20,18 @@ ActiveRecord::Schema.define(version: 20161118164400) do
     t.string   "student_num"
     t.string   "category"
     t.date     "file_timestamp"
+    t.integer  "student_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "student_number"
+    t.string   "num"
     t.string   "name"
     t.string   "password"
-    t.boolean  "is_admin",       default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "is_admin",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

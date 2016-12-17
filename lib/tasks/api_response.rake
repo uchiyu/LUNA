@@ -22,5 +22,7 @@ namespace :api do
     hashes.each do |hash|
       Document.create_from_hash(hash)
     end
+
+    Document::set_student_id
   end
 end

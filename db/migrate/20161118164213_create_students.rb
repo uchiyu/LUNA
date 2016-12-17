@@ -1,7 +1,7 @@
 class CreateStudents < ActiveRecord::Migration
   def change
     create_table :students do |t|
-      t.string :student_number, unique: true
+      t.string :num, unique: true
       t.string :name
       t.string :password
       t.boolean :is_admin, default: false
