@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   get 'react_examples/component', to: 'react_examples#component', as: :component
+
+  resources :documents
+  resources :students
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
