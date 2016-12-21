@@ -111,6 +111,8 @@ GEM
     rdoc (4.3.0)
     react_webpack_rails (0.6.0)
       rails (>= 3.2)
+    rwr-redux (0.5.0)
+      react_webpack_rails (>= 0.5.0)
     rwr-view_helpers (0.1.1)
       rails
       react_webpack_rails (>= 0.6.0)
@@ -164,6 +166,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.4)
   react_webpack_rails
+  rwr-redux
   rwr-view_helpers (~> 0.1.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

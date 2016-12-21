@@ -1,4 +1,5 @@
 h1 Documents#index
 p Find me in app/views/documents/index.html.slim
 
-= react_component('DocumentContainer', { documentData: @documents })
+= redux_store('Store', { documentData: @documents })
+= redux_container 'Document'

@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'react_webpack_rails'
+gem 'rwr-redux'
 
 gem 'slim-rails'
 
