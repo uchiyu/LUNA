@@ -20,9 +20,10 @@ const initialState = [
 export default function documentFilter(state = initialState, action) {
   switch (action.type) {
     case types.SEARCH_DOCUMENT:
-      return state.filter( function(elem, index, array) {
+      var filterData = state.defaultData.filter( function(elem, index, array) {
         return (elem.title.match(action.data.title))
       });
+      return { stateData: filterData, defaultData: state.defaultData };
     default:
       return state;
   }

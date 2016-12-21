@@ -2,7 +2,7 @@ import React from 'react';
 
 class DocumentTable extends React.Component {
   render() {
-    var document = this.props.documentData.map(function(e){
+    var document = this.props.documentData.stateData.map(function(e){
       return (<tr key={e.title}><td>{e.student_num}</td><td>{e.title}</td><td>{e.doc_num}</td><td>{e.category}</td></tr>);
     });
 
