@@ -9,7 +9,6 @@ import * as DocumentActions from '../actions';
 
 class Document extends Component {
   render() {
-    console.log(this.props)
     const { dispatch } = this.props;
     const boundActionCreators = bindActionCreators(DocumentActions, dispatch);
 
