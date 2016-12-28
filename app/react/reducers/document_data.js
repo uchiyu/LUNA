@@ -28,9 +28,11 @@ export default function documentFilter(state = initialState, action) {
       }
 
       documents = documents.map( elem => {
-        if ( elem.title.match(action.data.title) === null ) {
-          elem.visible = false
-        }
+        action.data.title_querys.forEach(function (query) {
+          if ( elem.title.match(query) === null ) {
+            elem.visible = false
+          }
+        });
         return elem
       })
       return documents

@@ -3,7 +3,8 @@ import React from 'react';
 class KeywordForm extends React.Component {
   filter() {
     const val = this.refs.keyword.value;
-    const data = { title: val };
+    const keys = val.split(' ');
+    const data = { title_querys: keys };
     this.props.filter(data);
   }
   render() {
