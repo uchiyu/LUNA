@@ -23,7 +23,6 @@ export default function documentFilter(state = initialState, action) {
   switch (action.type) {
     case types.SEARCH_DOCUMENT:
       let documents = Object.assign([], state)
-      console.log(documents)
       for (let elem of documents) {
         elem.visible = true
       }
