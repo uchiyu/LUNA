@@ -14,7 +14,7 @@ class Document extends Component {
 
     return (
       <DocumentContainer
-        documentData={this.props.documentData}
+        documents={this.props.documents}
         {...boundActionCreators}
       />
     );
@@ -23,7 +23,7 @@ class Document extends Component {
 
 function mapStateToProps(state) {
   return {
-    documentData: state.documentData
+    documents: state.documents
   };
 }
 
