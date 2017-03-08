@@ -5,7 +5,7 @@ import * as types from '../constants';
 const initialState = {
   searchKey: {
     student_num: "",
-    title: "",
+    title_queries: [],
     doc_num: "",
     category: "",
   },
@@ -28,13 +28,15 @@ const initialState = {
 }
 
 function searchDocument(documents, data) {
-  if (data.title) { documents.searchKey.title = data.title }
+  if (data.title_queries) { documents.searchKey.title_queries = data.title_querys }
   if (data.student_num) { documents.searchKey.student_num = data.student_num }
   for (let elem of documents.documentData) {
     elem.visible = true
   }
   let documentData = documents.documentData.map( elem => {
-    if ( elem.title.match(documents.searchKey.title) === null ) { elem.visible = false }
+    data.title_queries.forEach(function(query) {
+      if ( elem.title.match(query) === null ) { elem.visible = false }
+    });
     if ( elem.student_num.match(documents.searchKey.student_num) === null ) { elem.visible = false }
     return elem
   })
