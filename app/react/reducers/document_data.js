@@ -7,7 +7,7 @@ const initialState = {
     student_num: "",
     title_queries: [],
     doc_num: "",
-    category: "",
+    category_queries: [],
   },
   documentData : [
     {
@@ -28,16 +28,29 @@ const initialState = {
 }
 
 function searchDocument(documents, data) {
-  if (data.title_queries) { documents.searchKey.title_queries = data.title_querys }
+  if (data.title_queries) { documents.searchKey.title_queries = data.title_queries }
   if (data.student_num) { documents.searchKey.student_num = data.student_num }
+  if (data.category_queries) { documents.searchKey.category_queries = data.category_queries }
   for (let elem of documents.documentData) {
     elem.visible = true
   }
   let documentData = documents.documentData.map( elem => {
-    data.title_queries.forEach(function(query) {
-      if ( elem.title.match(query) === null ) { elem.visible = false }
+    let visibleFlag = { keyword: false, student_num: false, category: false }
+
+    documents.searchKey.title_queries.forEach(function(query) {
+      if ( elem.title.match(query) !== null ) { visibleFlag['keyword'] = true }
     });
-    if ( elem.student_num.match(documents.searchKey.student_num) === null ) { elem.visible = false }
+    if ( elem.student_num.match(documents.searchKey.student_num) !== null ) { visibleFlag['student_num'] = true }
+    documents.searchKey.category_queries.forEach(function(query) {
+      if ( elem.category === query ) { visibleFlag['category'] = true }
+    });
+
+    // フォームが未入力の場合は表示flagをtrueに
+    if ( documents.searchKey.title_queries.length === 0 ) { visibleFlag['keyword'] = true  }
+    if ( documents.searchKey.student_num === "" ) { visibleFlag['student_num'] = true  }
+    if ( documents.searchKey.category_queries.length === 0 ) { visibleFlag['category'] = true }
+
+    if ( visibleFlag['keyword'] && visibleFlag['student_num'] && visibleFlag['category'] ) { elem.visible = true } else { elem.visible = false }
     return elem
   })
   documents['documentData'] = documentData
@@ -48,8 +61,6 @@ export default function documentFilter(state = initialState, action) {
   let documents = Object.assign([], state)
   switch (action.type) {
     case types.SEARCH_DOCUMENT:
-      return searchDocument(documents, action.data)
-    case types.SEARCH_STUDENT:
       return searchDocument(documents, action.data)
     default:
       return state
