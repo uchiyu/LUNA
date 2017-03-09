@@ -9,11 +9,8 @@ class DocumentContainer extends React.Component {
   render() {
     return(
       <div>
-        <div>キーワード：</div>
         <KeywordForm filter = {this.props.filter} />
-        <div>学籍番号：</div>
         <StudentForm filter = {this.props.filter} />
-        <div>ナンバリング：</div>
         <DocnumForm filter = {this.props.filter} />
         <div>カテゴリ：</div>
         <CategoryForm filter = {this.props.filter} />

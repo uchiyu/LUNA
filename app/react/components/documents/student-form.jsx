@@ -9,6 +9,7 @@ class StudentForm extends React.Component {
   render() {
     return(
       <form>
+        学籍番号：
         <input ref="student" type="text" onKeyUp={this.filter.bind(this)} placeholder="例 : s13t208" />
       </form>
     );

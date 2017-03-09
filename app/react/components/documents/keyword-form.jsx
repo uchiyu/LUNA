@@ -10,6 +10,7 @@ class KeywordForm extends React.Component {
   render() {
     return(
       <form>
+        キーワード：
         <input ref="keyword" type="text" onKeyUp={this.filter.bind(this)} placeholder="キーワードを入力" />
       </form>
     );
