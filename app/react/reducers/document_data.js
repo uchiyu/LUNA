@@ -30,17 +30,19 @@ const initialState = {
 function searchDocument(documents, data) {
   if (data.title_queries) { documents.searchKey.title_queries = data.title_queries }
   if (data.student_num) { documents.searchKey.student_num = data.student_num }
+  if (data.doc_num) { documents.searchKey.doc_num = data.doc_num }
   if (data.category_queries) { documents.searchKey.category_queries = data.category_queries }
   for (let elem of documents.documentData) {
     elem.visible = true
   }
   let documentData = documents.documentData.map( elem => {
-    let visibleFlag = { keyword: false, student_num: false, category: false }
+    let visibleFlag = { keyword: false, student_num: false, doc_num: false, category: false }
 
     documents.searchKey.title_queries.forEach(function(query) {
       if ( elem.title.match(query) !== null ) { visibleFlag['keyword'] = true }
     });
     if ( elem.student_num.match(documents.searchKey.student_num) !== null ) { visibleFlag['student_num'] = true }
+    if ( String(elem.doc_num).match(documents.searchKey.doc_num) !== null ) { visibleFlag['doc_num'] = true }
     documents.searchKey.category_queries.forEach(function(query) {
       if ( elem.category === query ) { visibleFlag['category'] = true }
     });
@@ -48,9 +50,10 @@ function searchDocument(documents, data) {
     // フォームが未入力の場合は表示flagをtrueに
     if ( documents.searchKey.title_queries.length === 0 ) { visibleFlag['keyword'] = true  }
     if ( documents.searchKey.student_num === "" ) { visibleFlag['student_num'] = true  }
+    if ( documents.searchKey.doc_num === "" ) { visibleFlag['doc_num'] = true  }
     if ( documents.searchKey.category_queries.length === 0 ) { visibleFlag['category'] = true }
 
-    if ( visibleFlag['keyword'] && visibleFlag['student_num'] && visibleFlag['category'] ) { elem.visible = true } else { elem.visible = false }
+    if ( visibleFlag['keyword'] && visibleFlag['student_num'] && visibleFlag['doc_num'] && visibleFlag['category'] ) { elem.visible = true } else { elem.visible = false }
     return elem
   })
   documents['documentData'] = documentData

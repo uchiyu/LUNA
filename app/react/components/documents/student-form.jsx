@@ -9,7 +9,7 @@ class StudentForm extends React.Component {
   render() {
     return(
       <form>
-        <input ref="student" type="text" onKeyUp={this.filter.bind(this)} />
+        <input ref="student" type="text" onKeyUp={this.filter.bind(this)} placeholder="例 : s13t208" />
       </form>
     );
   }

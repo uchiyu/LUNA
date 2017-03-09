@@ -23,7 +23,6 @@ class CategoryForm extends React.Component {
   render() {
     return(
       <form>
-        <p>カテゴリ：</p>
         <input type="checkbox" name="category" ref="category1" onChange={this.filter.bind(this)} /> 自己紹介
         <input type="checkbox" name="category" ref="category2" onChange={this.filter.bind(this)} /> 授業発表
         <input type="checkbox" name="category" ref="category3" onChange={this.filter.bind(this)} /> 制作実習
