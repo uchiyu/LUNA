@@ -9,10 +9,10 @@ class KeywordForm extends React.Component {
   }
   render() {
     return(
-      <form>
+      <div className="mdl-cell mdl-cell--4-col">
         キーワード：
-        <input ref="keyword" type="text" onKeyUp={this.filter.bind(this)} placeholder="キーワードを入力" />
-      </form>
+        <input ref="keyword" type="text" onKeyUp={this.filter.bind(this)} placeholder="例：自己紹介" />
+      </div>
     );
   }
 }

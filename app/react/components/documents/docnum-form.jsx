@@ -8,10 +8,10 @@ class DocnumForm extends React.Component {
   }
   render() {
     return(
-      <form>
+      <div className="mdl-cell mdl-cell--4-col">
         ナンバリング：
         <input ref="docnum" type="text" onKeyUp={this.filter.bind(this)} placeholder="例 : 201703" />
-      </form>
+      </div>
     );
   }
 }

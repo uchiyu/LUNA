@@ -9,9 +9,11 @@ class DocumentContainer extends React.Component {
   render() {
     return(
       <div>
-        <KeywordForm filter = {this.props.filter} />
-        <StudentForm filter = {this.props.filter} />
-        <DocnumForm filter = {this.props.filter} />
+        <form className="mdl-grid">
+          <KeywordForm filter = {this.props.filter} />
+          <StudentForm filter = {this.props.filter} />
+          <DocnumForm filter = {this.props.filter} />
+        </form>
         <div>カテゴリ：</div>
         <CategoryForm filter = {this.props.filter} />
         <DocumentTable documentData = {this.props.documents.documentData} />
