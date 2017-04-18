@@ -1,5 +1,4 @@
 class Document < ActiveRecord::Base
-  belongs_to :student
 
   def self.create_from_hash(hash)
     document = Document.find_by(title: hash['title'])

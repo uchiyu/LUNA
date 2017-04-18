@@ -6,18 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Student.create(
+User.create(
   id: 1,
-  num: "s13t200",
+  student_num: "s13t200",
   name: "吉良吉影",
-  is_admin: true
+  password: 'hogehoge'
 )
 
-Student.create(
+User.create(
   id: 2,
-  num: "s12t200",
+  student_num: "s12t200",
   name: "ディオ・ブランドー",
-  is_admin: true
+  password: 'mogemoge'
 )
 
 Document.create(

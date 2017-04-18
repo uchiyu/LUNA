@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  root 'documents#index'
+
   get 'react_examples/component', to: 'react_examples#component', as: :component
 
   resources :documents
