@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  # 自前でroutingを設定しないとdefaultのviewをみてしまうので個別に設定
   root 'documents#index'
+  devise_for :users
 
   get 'react_examples/component', to: 'react_examples#component', as: :component
 
   resources :documents
-  resources :students
+  # userではdeviseのuserと重複するため別名に変更
+  resources :user_admin, :only => [:new, :create, :index], controller: "users"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -20,6 +20,15 @@
     </div>
   </header>
   <div class="mdl-layout__drawer">
+    <% if user_signed_in? %>
+      <nav class="mdl-navigation">
+        <%= link_to 'プロフィール変更', edit_user_registration_path %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "アカウント追加", 'user_admin/new' %>
+      </nav> 
+    <% else %>
+      <div>ログインして下さい</div>
+    <% end %>
   </div>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
