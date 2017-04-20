@@ -11,4 +11,15 @@ class User < ActiveRecord::Base
   def email_changed?
       false
   end
+
+  after_create do
+    Student.create(num: self.student_num, name: self.name)
+  end
+
+  before_update do
+    @student = Student.find_by(num: self.student_num, name: self.name)
+  end
+  after_update do
+    @student.update(num: self.student_num, name: self.name)
+  end
 end

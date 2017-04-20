@@ -1,0 +1,15 @@
+<%= form_for @student, url: {action: "create"} do |f| %>
+  <h2>Create Account</h2>
+
+  <div>
+    <label><%= f.label :student_num %> <br />
+    <%= f.text_field :num %></label>
+  </div>
+
+  <div>
+    <label><%= f.label :name %> <br />
+    <%= f.text_field :name %></label>
+  </div>
+
+  <p><%= f.submit "create" %></p>
+<% end %>

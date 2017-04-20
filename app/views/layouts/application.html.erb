@@ -14,17 +14,24 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Luna</span>
+      <span class="mdl-layout-title">月例発表管理ツール Luna</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <%= link_to 'プロフィール変更', edit_user_registration_path, class: "mdl-navigation__link" %>
+        <%= link_to "ログアウト", destroy_user_session_path, class: "mdl-navigation__link", method: :delete %>
+        <%= link_to "アカウント追加", new_user_admin_path, class: "mdl-navigation__link" %>
+        <%#= link_to "学生の追加", new_student_path %>
+      </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <% if user_signed_in? %>
       <nav class="mdl-navigation">
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <%= link_to "アカウント追加", 'user_admin/new' %>
+        <%= link_to 'プロフィール変更', edit_user_registration_path, class: "mdl-navigation__link" %>
+        <%= link_to "ログアウト", destroy_user_session_path, class: "mdl-navigation__link", method: :delete %>
+        <%= link_to "アカウント追加", new_user_admin_path, class: "mdl-navigation__link" %>
+        <%#= link_to "学生の追加", new_student_path %>
       </nav> 
     <% else %>
       <div>ログインして下さい</div>
@@ -42,7 +49,6 @@
     </div>
   </main>
 </div>
-
 
 </body>
 </html>

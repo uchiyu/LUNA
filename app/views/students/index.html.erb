@@ -1,0 +1,18 @@
+<h2>Students</h2>
+<table>
+  <thead>
+    <tr>
+      <th> student_num </th>
+      <th> name </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+      <th><%= student.num %></th>
+      <th><%= student.name %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "資料一覧ページへ", controller: "documents", action: "index"%>
