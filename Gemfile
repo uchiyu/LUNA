@@ -27,10 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'unicorn'
 
 gem 'react_webpack_rails'
 gem 'rwr-redux'
@@ -43,6 +40,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'rvm-capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 
 gem 'rwr-view_helpers', '~> 0.1.1'
